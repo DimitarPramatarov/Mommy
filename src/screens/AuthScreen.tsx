@@ -1,18 +1,16 @@
-import { useNavigation } from '@react-navigation/core';
-import React, {useState } from 'react';
+import React, {useState, useContext } from 'react';
 import { StyleSheet, View, TextInput, Text, TouchableOpacity,
    NativeSyntheticEvent, TextInputChangeEventData} from 'react-native';
 import {login, register} from '../services/auth/AuthService';
+import { useNavigation } from '@react-navigation/core';
+import UserContext from '../Context';
 
-interface User  {
-    username: string;
-    password: string;
-    email: string;
-  }
 
-const AuthScreen: React.FC<{username: string, password: string, email: string}> = () => {
+const AuthScreen = () =>  {
 
     const navigation = useNavigation();
+    const context = useContext(UserContext);
+
     const [isRegister, setIsRegister] = useState<boolean>(false);
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -27,13 +25,24 @@ const AuthScreen: React.FC<{username: string, password: string, email: string}> 
         setPassword(event.nativeEvent.text);
     }
 
-    const handleSubmit = () : void => {
+    const handleSubmit = async ()  => {
 
-        if(isRegister)
+      if(isRegister)
         {
-          register(username, email, password)
+           let result = register(username, email, password)
+            console.log(result);
+           if(result != null)
+           {
+            setIsRegister(false);
+           }
+
         } else {
-          login(username, password)
+
+           let user = login(username, password)
+           if(user != null)
+           {
+            context.login(user);
+           }
         }
         
     }

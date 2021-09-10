@@ -1,21 +1,16 @@
 import axios from 'axios';
 import { loginUrl, registerUrl } from '../../constants/HttpCalls';
 
-interface User {
-    userName: string,
-    email: string,
-    password: string
-}
 
- export const login = (userName :string, password: string) => {
+  export const login =  async (username :string, password: string)  => {
 
-    axios.post(loginUrl,   {
-        username: userName,
+    await axios.post(loginUrl,   {
+        username: username,
         password: password,
     })
-  .then(function (response) {
+  .then(function (response) : string {
     // handle success
-    console.log(response.data.token)
+    return response.data.token
   })
   .catch(function (error) {
     // handle error
@@ -26,23 +21,22 @@ interface User {
   });
 }
 
- export const register = (userName :string, password: string, email:string) => {
-
-    axios.post(registerUrl,   {
-        username: userName,
-        password: password,
+ export const register = async (username :string, email: string, password: string) => {
+    await axios.post(registerUrl,   {
+        username: username,
         email: email,
+        password: password,
     })
-  .then(function (response) {
-    // handle success
-    console.log(response.data);
+  .then(function (response) : string {
+    // handle success\
+    return response.data;
   })
   .catch(function (error) {
     // handle error
     console.warn(error);
   })
   .then(function () {
-    // always executed
+    console.log("response");
   });
 }
 
