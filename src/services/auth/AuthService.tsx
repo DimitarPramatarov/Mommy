@@ -1,24 +1,24 @@
 import axios from 'axios';
 import { loginUrl, registerUrl } from '../../constants/HttpCalls';
 
+  export const login = async (username :string, password: string) : Promise<string>=> {
 
-  export const login =  async (username :string, password: string)  => {
-
-    await axios.post(loginUrl,   {
+    let token = "";
+      await axios.post<any>(loginUrl,   {
         username: username,
         password: password,
     })
-  .then(function (response) : string {
+  .then(await function (response)  {
     // handle success
-    return response.data.token
+      token = response.data.token;
+      
   })
   .catch(function (error) {
     // handle error
     console.warn(error);
   })
-  .then(function () {
-    // always executed
-  });
+
+  return token
 }
 
  export const register = async (username :string, email: string, password: string) => {
@@ -35,9 +35,6 @@ import { loginUrl, registerUrl } from '../../constants/HttpCalls';
     // handle error
     console.warn(error);
   })
-  .then(function () {
-    console.log("response");
-  });
 }
 
 

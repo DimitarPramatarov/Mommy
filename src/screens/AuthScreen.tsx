@@ -5,7 +5,6 @@ import {login, register} from '../services/auth/AuthService';
 import { useNavigation } from '@react-navigation/core';
 import UserContext from '../Context';
 
-
 const AuthScreen = () =>  {
 
     const navigation = useNavigation();
@@ -29,16 +28,16 @@ const AuthScreen = () =>  {
 
       if(isRegister)
         {
-           let result = register(username, email, password)
-            console.log(result);
+           let result =  register(username, email, password)
            if(result != null)
            {
-            setIsRegister(false);
+            await setIsRegister(false);
            }
 
         } else {
 
-           let user = login(username, password)
+           let user = await login(username, password)
+
            if(user != null)
            {
             context.login(user);

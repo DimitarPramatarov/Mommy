@@ -1,18 +1,21 @@
+import React, {useContext} from 'react';
 import axios from 'axios';
-import Post from '../../components/Post';
 import { getAllPosts } from '../../constants/HttpCalls';
 
-export const GetAllPosts = async ()  => {
-    
-    await axios.get(getAllPosts) 
-    .then(function (response) : string {
-    // handle success\
-    return response.data;
+export const  GetAllPosts = async () : Promise<string[]> => {
+
+    let posts: string[] = [];
+     await axios.get(getAllPosts)  
+    .then(await function (response){
+       posts = response.data;
+       console.log(posts);
   })
   .catch(function (error) {
     // handle error
     console.warn(error);
-  })
+  }) 
+
+  return posts;
 }
 
 const PostService = {

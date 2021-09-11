@@ -19,6 +19,7 @@ export type RootStackParamList = {
   NotFound: undefined;
   Auth: undefined;
   ModalWork:undefined;
+  HomeScreen: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -31,6 +32,7 @@ export type RootTabParamList = {
   TabTwo: undefined;
   Auth: undefined
   ModalWork:undefined;
+  HomeScreen: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

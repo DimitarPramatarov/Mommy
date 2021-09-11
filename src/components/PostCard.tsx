@@ -1,19 +1,28 @@
 import React, { useEffect } from 'react';
 import {View, Text} from 'react-native';
 
-const PostCard = (title: string, isAnswered: string, createdOn: Date, username: string)=> {
+
+interface Post {
+    title: string,
+    isAnswered: boolean,
+    createdOn: Date,
+    username: string,
+    postId: string
+}
+
+const PostCard = (post: Post)=> {
 
 return(
     <View>
-        <Text>{title}</Text> 
+        <Text>{post.title}</Text> 
         <View>
-            <Text>{isAnswered}</Text>
+            <Text>{post.isAnswered}</Text>
+        </View>
+        <View> 
+            <Text>{post.createdOn}</Text>
         </View>
         <View>
-            <Text>{createdOn}</Text>
-        </View>
-        <View>
-            <Text>{username}</Text>
+            <Text>{post.username}</Text>
         </View>
     </View>
 );

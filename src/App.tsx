@@ -8,16 +8,13 @@ import Navigation from './navigation';
 import UserContext from './Context';
 
 
-export default function App(props: any) {
+export default function  App(props: any) {
 
   const [user, setUser] = useState(props.user ? {
     ...props.user,
     loggedIn: true
   } : null);
-
   const login = (user: any) : void => {
-    console.log("Context is here");
-    console.log(user);
     setUser({
       ...user,
       isLoggedIn: true
