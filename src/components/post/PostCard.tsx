@@ -2,16 +2,15 @@ import React, { useEffect } from 'react';
 import {View, Text} from 'react-native';
 
 
-interface Post {
+export interface Post {
+    postId: string
     title: string,
-    isAnswered: boolean,
     createdOn: Date,
     username: string,
-    postId: string
+    isAnswered: boolean,
 }
 
 const PostCard = (post: Post)=> {
-
 return(
     <View>
         <Text>{post.title}</Text> 

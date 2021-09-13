@@ -24,6 +24,10 @@ const AuthScreen = () =>  {
         setPassword(event.nativeEvent.text);
     }
 
+    const handleEmail = (event : NativeSyntheticEvent<TextInputChangeEventData>) : void => {
+      setEmail(event.nativeEvent.text);
+  }
+
     const handleSubmit = async ()  => {
 
       if(isRegister)
@@ -46,9 +50,7 @@ const AuthScreen = () =>  {
         
     }
 
-    const handleEmail = (event : NativeSyntheticEvent<TextInputChangeEventData>) : void => {
-      setEmail(event.nativeEvent.text);
-  }
+    
 
     const handleIsRegsiter = () : void => {
         setIsRegister(!isRegister);
@@ -62,6 +64,7 @@ const AuthScreen = () =>  {
           <TextInput  
             style={styles.inputText}
             placeholder="Username..." 
+            value={username}
             placeholderTextColor="#003f5c"
             onChange={handleUsername}/>
         </View>
@@ -69,6 +72,7 @@ const AuthScreen = () =>  {
           <TextInput  
             style={styles.inputText}
             placeholder="Email..." 
+            value={email}
             placeholderTextColor="#003f5c"
             onChange={handleEmail}/>
         </View>
@@ -77,6 +81,7 @@ const AuthScreen = () =>  {
             secureTextEntry
             style={styles.inputText}
             placeholder="Password..." 
+            value={password}
             placeholderTextColor="#003f5c"
             onChange={handlePassword}/>
         </View>
@@ -101,6 +106,7 @@ const AuthScreen = () =>  {
           style={styles.inputText}
           placeholder="Username..." 
           placeholderTextColor="#003f5c"
+          value={username}
           onChange={handleUsername}/>
       </View>
       <View style={styles.inputView} >
@@ -108,6 +114,7 @@ const AuthScreen = () =>  {
           secureTextEntry
           style={styles.inputText}
           placeholder="Password..." 
+          value={password}
           placeholderTextColor="#003f5c"
           onChange={handlePassword}/>
       </View>

@@ -1,21 +1,19 @@
 import React, {useContext} from 'react';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { getAllPosts } from '../../constants/HttpCalls';
+import { AndroidManifest } from 'expo-constants';
 
-export const  GetAllPosts = async () : Promise<string[]> => {
+export const  GetAllPosts = async () : Promise<any[]> => {
+    
+  let posts: any;
 
-    let posts: string[] = [];
-     await axios.get(getAllPosts)  
-    .then(await function (response){
-       posts = response.data;
-       console.log(posts);
+  await axios.get<any[]>(getAllPosts)
+  .then(await function (response) {
+      posts = response.data
   })
-  .catch(function (error) {
-    // handle error
-    console.warn(error);
-  }) 
-
+  console.log(posts);
   return posts;
+  
 }
 
 const PostService = {
