@@ -1,13 +1,12 @@
-import React, {useContext} from 'react';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { getAllPosts } from '../../constants/HttpCalls';
-import { AndroidManifest } from 'expo-constants';
 
-export const  GetAllPosts = async () : Promise<any[]> => {
+export const  GetAllPosts = async (token: string) : Promise<any[]> => {
     
   let posts: any;
-
-  await axios.get<any[]>(getAllPosts)
+  await axios.get<any[]>(getAllPosts, {
+    headers:{"Authorization" : `Bearer ${token}`}
+  })
   .then(await function (response) {
       posts = response.data
   })

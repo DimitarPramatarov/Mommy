@@ -10,7 +10,7 @@ import { loginUrl, registerUrl } from '../../constants/HttpCalls';
     })
   .then(await function (response)  {
     // handle success
-      token = response.data.token;
+      token = response.data;
       
   })
   .catch(function (error) {

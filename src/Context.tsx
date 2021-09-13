@@ -1,7 +1,13 @@
 import React from "react";
 
+type User = {
+    token: string,
+    isLogged: boolean,
+}
+
+
 const UserContext = React.createContext({
-    user: {},
+    user: {} as User,
     login: (userObject: any) : void => {},
     logOut: () : void => {}
 })
