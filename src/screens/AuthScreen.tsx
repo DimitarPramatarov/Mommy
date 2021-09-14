@@ -2,12 +2,10 @@ import React, {useState, useContext } from 'react';
 import { StyleSheet, View, TextInput, Text, TouchableOpacity,
    NativeSyntheticEvent, TextInputChangeEventData} from 'react-native';
 import {login, register} from '../services/auth/AuthService';
-import { useNavigation } from '@react-navigation/core';
 import UserContext from '../Context';
 
 const AuthScreen = () =>  {
 
-    const navigation = useNavigation();
     const context = useContext(UserContext);
 
     const [isRegister, setIsRegister] = useState<boolean>(false);
@@ -30,8 +28,7 @@ const AuthScreen = () =>  {
 
     const handleSubmit = async ()  => {
 
-      if(isRegister)
-        {
+      if(isRegister) {
            let result =  register(username, email, password)
            if(result != null)
            {
@@ -47,7 +44,6 @@ const AuthScreen = () =>  {
             context.login(user);
            }
         }
-        
     }
 
     

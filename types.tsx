@@ -20,6 +20,7 @@ export type RootStackParamList = {
   Auth: undefined;
   ModalWork:undefined;
   HomeScreen: undefined;
+  CreatePost: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

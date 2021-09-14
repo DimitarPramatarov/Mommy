@@ -15,7 +15,7 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
+import CreatePost from '../components/post/CreatePost';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import AuthScreen from '../screens/AuthScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../types';
@@ -45,6 +45,7 @@ function RootNavigator() {
   console.log(context.user);
   if(context.user != null)
   {
+    if(context.user.token != null || context.user.token != undefined)
     isLogged = true;
   }
   if(isLogged == false)
@@ -60,6 +61,7 @@ function RootNavigator() {
       <Stack.Navigator>
         <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="CreatePost" component={CreatePost} />
         <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
         <Stack.Screen name="ModalWork" component={ModalScreen} options={{title:"modal works"}}/>
         <Stack.Group screenOptions={{ presentation: 'modal' }}>

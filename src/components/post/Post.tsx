@@ -17,8 +17,8 @@ import UserContext from '../../Context';
     const renderPost = useMemo(() => {
             return  posts.map(post => {
                 return (
-                    <View>
-                        <PostCard key={post.postId}  {...post}/>
+                    <View key={post.postId}>
+                        <PostCard {...post}/>
                     </View>
                 )
             })

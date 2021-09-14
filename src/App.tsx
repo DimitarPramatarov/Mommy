@@ -7,14 +7,17 @@ import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import UserContext from './Context';
 
-
 export default function  App(props: any) {
 
   const [user, setUser] = useState(props.user ? {
     ...props.user,
     loggedIn: true
   } : null);
+
   const login = (user: any) : void => {
+    if(user.token == null) {
+      return;
+    } 
     setUser({
       ...user,
       isLoggedIn: true
@@ -23,7 +26,7 @@ export default function  App(props: any) {
   const logOut = () => {
     setUser({
       user: null,
-      loggedIn: false
+      isLoggedIn: false
     })
   }
 
