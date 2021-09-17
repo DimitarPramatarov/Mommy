@@ -132,6 +132,7 @@ const AuthScreen = () =>  {
 
 const styles = StyleSheet.create({
     container: {
+      position: 'relative',
       flex: 1,
       backgroundColor: '#003f5c',
       alignItems: 'center',

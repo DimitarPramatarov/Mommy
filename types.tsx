@@ -21,6 +21,7 @@ export type RootStackParamList = {
   ModalWork:undefined;
   HomeScreen: undefined;
   CreatePost: undefined;
+  PostDetails: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -34,6 +35,7 @@ export type RootTabParamList = {
   Auth: undefined
   ModalWork:undefined;
   HomeScreen: undefined;
+  PostDetails: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

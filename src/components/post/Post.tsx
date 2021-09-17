@@ -1,24 +1,25 @@
 import React, {useState, useCallback, useMemo, useEffect, useContext } from 'react';
-import {View} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 import PostCard from './PostCard';
 import { GetAllPosts } from '../../services/post/PostService';
 import UserContext from '../../Context';
 
- const Post = () => {
+ const Post = (navigation: any) => {
     const context = useContext(UserContext);
     const [posts, setPosts] = useState<any[]>([]);
-    
 
     const getPosts = useCallback(async ()  => {
         let newPosts = await GetAllPosts(context.user.token)
         setPosts(newPosts);
     }, [])
-
+   
     const renderPost = useMemo(() => {
             return  posts.map(post => {
                 return (
-                    <View key={post.postId}>
+                    <View  key={post.postId}>
+                        <TouchableOpacity  onPress={() => navigation.push('PostDetails', {postId: post.postId})}>
                         <PostCard {...post}/>
+                        </TouchableOpacity>
                     </View>
                 )
             })
@@ -30,7 +31,7 @@ import UserContext from '../../Context';
     }, [getPosts.length])
     
     return(
-        <View>
+        <View> 
             {renderPost}
         </View>
     );

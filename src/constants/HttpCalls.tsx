@@ -1,8 +1,11 @@
 //Get requests
 export const loginUrl = "https://localhost:44306/Identity/Login";
-export const getAllPosts = "https://localhost:44306/Post/GetAllPosts";
+export const getAllPostsUrl = "https://localhost:44306/Post/GetAllPosts";
+export const getPostDetailsUrl = "https://localhost:44306/Post/Details";
+export const getAllAnswersUrl = "https://localhost:44306/Answer/GetAnswers";
+
 
 
 // Post requests
 export const registerUrl = "https://localhost:44306/Identity/Register";
-export const createPost = "https://localhost:44306/Post/CreatePost";
+export const createPostUrl = "https://localhost:44306/Post/CreatePost";

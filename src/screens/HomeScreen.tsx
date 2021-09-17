@@ -17,7 +17,7 @@ const HomeScreen = ({navigation} : RootStackScreenProps<"HomeScreen">) => {
                 </TouchableOpacity>
             </View>
         <View>
-            <Post />
+            <Post {...navigation}/>
         </View>
         </ScrollView>
     )

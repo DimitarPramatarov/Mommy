@@ -22,6 +22,7 @@ import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../
 import LinkingConfiguration from './LinkingConfiguration';
 import UserContext from '../Context';
 import HomeScreen from '../screens/HomeScreen';
+import PostDetailScreen from '../screens/PostDetailScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -42,7 +43,6 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   const context = useContext(UserContext);
   let isLogged = false;
-  console.log(context.user);
   if(context.user != null)
   {
     if(context.user.token != null || context.user.token != undefined)
@@ -62,6 +62,7 @@ function RootNavigator() {
         <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="CreatePost" component={CreatePost} />
+        <Stack.Screen name="PostDetails" component={PostDetailScreen}/>
         <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
         <Stack.Screen name="ModalWork" component={ModalScreen} options={{title:"modal works"}}/>
         <Stack.Group screenOptions={{ presentation: 'modal' }}>
