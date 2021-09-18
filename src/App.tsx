@@ -7,7 +7,7 @@ import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import UserContext from './Context';
 
-export default function  App(props: any) {
+const App = (props: any) => {
 
   const [user, setUser] = useState(props.user ? {
     ...props.user,
@@ -50,3 +50,5 @@ export default function  App(props: any) {
     );
   }
 }
+
+export default App;
