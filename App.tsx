@@ -2,10 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
-import UserContext from './Context';
+import useCachedResources from './src/hooks/useCachedResources';
+import useColorScheme from './src/hooks/useColorScheme';
+import Navigation from './src/navigation';
+import UserContext from './src/Context';
 
 const App = (props: any) => {
 

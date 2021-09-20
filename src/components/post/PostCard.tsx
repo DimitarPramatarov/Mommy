@@ -54,7 +54,7 @@ return(
 const styles = StyleSheet.create({
     post: {
         backgroundColor: '#fff',
-        fontSize: '1rem',
+        fontSize: 1,
         borderRadius: 0.75,
         shadowColor: "#000",
         shadowOffset:{
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         display:'flex',
         alignItems: 'center',
         lineHeight: 1.25,
-        fontSize: '0.875rem',
+        fontSize: 0.875,
     },
     authorPic: {
         position: 'relative',

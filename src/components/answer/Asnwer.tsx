@@ -22,7 +22,7 @@ const Answer = (postId: PostId) => {
     const renderAnswers = useMemo(() => {
         return  answers.map(answer => {
             return (
-                <View key={answer.postId}>
+                <View key={answer.answerId}>
                     <AnswerCard {...answer}/>
                 </View>
             )
