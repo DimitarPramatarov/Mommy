@@ -20,7 +20,12 @@ const CreatePost = ({navigation} : RootStackScreenProps<"CreatePost">) => {
 
     const handleSubmit = async () => {
         const token = context.user.token;
-        await addPost(title, description, token);
+        let result = await addPost(title, description, token);
+        console.log(result);
+        if(result == "Your post is created!"){
+            navigation.navigate("HomeScreen");
+        }
+        
     }
 
     return(

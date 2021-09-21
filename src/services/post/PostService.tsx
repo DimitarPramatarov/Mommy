@@ -14,8 +14,10 @@ export const  GetAllPosts = async (token: string) : Promise<any[]> => {
   
 }
 
-export const addPost = async (title:string, description: string, token: string) => {
-    await axios.post(createPostUrl, {
+export const addPost = async (title:string, description: string, token: string) : Promise<string> => {
+
+    let result: any;
+    await axios.post<any>(createPostUrl, {
       title:title,
       description: description,
     }, 
@@ -23,8 +25,10 @@ export const addPost = async (title:string, description: string, token: string) 
       headers:{"Authorization" : `Bearer ${token}`}
     })
     .then(await function(response) {
-      console.log(response);
+      result = response.data;
     })
+
+    return result;
 }
 
 export const getPostDetails = async(postId: string, token: string) : Promise<any[]> => {
