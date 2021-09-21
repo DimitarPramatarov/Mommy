@@ -3,6 +3,8 @@ import { StyleSheet, View, TextInput, Text, TouchableOpacity,
    NativeSyntheticEvent, TextInputChangeEventData} from 'react-native';
 import {login, register} from '../services/auth/AuthService';
 import UserContext from '../Context';
+import AuthButton from '../components/buttons/AuthButton';
+import TextButton from '../components/buttons/TextButton';
 
 const AuthScreen = () =>  {
 
@@ -84,12 +86,8 @@ const AuthScreen = () =>  {
         <TouchableOpacity>
           <Text style={styles.forgot}>Forgot Password?</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleSubmit} style={styles.loginBtn}>
-          <Text style={styles.loginText}>REGISTER</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleIsRegsiter}>
-          <Text style={styles.loginText}>SignIn</Text>
-        </TouchableOpacity>
+        <AuthButton buttonName={"REGISTER"} handleFunction={handleSubmit}/>
+        <TextButton buttonName={"SignIn"} handleFunction={handleIsRegsiter}/>
       </View>
 
     ) 
@@ -117,12 +115,8 @@ const AuthScreen = () =>  {
       <TouchableOpacity>
         <Text style={styles.forgot}>Forgot Password?</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={handleSubmit} style={styles.loginBtn}>
-        <Text style={styles.loginText}>LOGIN</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleIsRegsiter}>
-        <Text style={styles.loginText}>SignUp</Text>
-      </TouchableOpacity>
+      <AuthButton buttonName={"LOGIN"} handleFunction={handleSubmit}/>
+      <TextButton buttonName={"SignUp"} handleFunction={handleIsRegsiter}/>
     </View>
   ) 
   }
