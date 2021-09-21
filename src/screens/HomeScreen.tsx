@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from '../components/post/Post';
-import {View, ScrollView, TouchableOpacity} from 'react-native'
+import {ScrollView, View, Text, TouchableOpacity} from 'react-native'
 import { RootStackScreenProps } from '../../types';
 
 const HomeScreen = ({navigation} : RootStackScreenProps<"HomeScreen">) => {
@@ -12,7 +12,7 @@ const HomeScreen = ({navigation} : RootStackScreenProps<"HomeScreen">) => {
     return(
         <ScrollView>
             <TouchableOpacity onPress={createPost}>
-                    CreatePost
+                <Text>CreatePost</Text>
                 </TouchableOpacity>
         <View>
             <Post {...navigation}/>

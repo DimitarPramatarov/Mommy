@@ -9,3 +9,7 @@ export const getAllAnswersUrl = "https://localhost:44306/Answer/GetAnswers";
 // Post requests
 export const registerUrl = "https://localhost:44306/Identity/Register";
 export const createPostUrl = "https://localhost:44306/Post/CreatePost";
+
+
+//Put requests
+export const updatePostUrl = "https://localhost:44306/Post/UpdatePost";

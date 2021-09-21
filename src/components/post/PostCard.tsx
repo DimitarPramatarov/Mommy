@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet,} from 'react-native';
 
 export interface Post {
     postId: string
@@ -11,10 +11,6 @@ export interface Post {
 
 
 const PostCard = (post: Post)=> {
-
-
-const handlePress = () => {
-}
 
 return(
     <View style={styles.post}>
@@ -45,6 +41,8 @@ return(
         <View>
             <Text>{post.isAnswered}</Text>
         </View>
+    </View>
+    <View>
     </View>
 </View>
         </View>

@@ -6,15 +6,32 @@ import useCachedResources from './src/hooks/useCachedResources';
 import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/navigation';
 import UserContext from './src/Context';
+//import {setJwt, getJwt} from './src/services/auth/JwtService';
 
 const App = (props: any) => {
 
   const [user, setUser] = useState(props.user ? {
     ...props.user,
-    loggedIn: true
+    loggedIn: false
   } : null);
+  
+  // const checkUser = async () => {
+  //   const userToken = await getJwt();
+  //   if(userToken != ''){
+  //     setUser({
+  //       ...user,
+  //       isLoggedIn: true
+  //     })
+  //   }
+  // }
 
-  const login = (user: any) : void => {
+  // if(user == null)
+  // {
+  //   checkUser();
+  // }
+
+
+  const login = async (user: any) : Promise<void> => {
     if(user.token == null) {
       return;
     } 
@@ -22,6 +39,10 @@ const App = (props: any) => {
       ...user,
       isLoggedIn: true
     })
+    //await setJwt(user.token);
+   // let token = await getJwt();
+
+    //console.log(token);
   }
   const logOut = () => {
     setUser({

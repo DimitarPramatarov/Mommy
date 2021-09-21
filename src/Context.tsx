@@ -3,6 +3,7 @@ import React from "react";
 type User = {
     token: string,
     isLogged: boolean,
+    userName: string,
 }
 
 

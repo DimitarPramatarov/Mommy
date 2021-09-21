@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getAllPostsUrl, createPostUrl, getPostDetailsUrl } from '../../constants/HttpCalls';
+import { getAllPostsUrl, createPostUrl, getPostDetailsUrl, updatePostUrl } from '../../constants/HttpCalls';
 
 export const  GetAllPosts = async (token: string) : Promise<any[]> => {
     
@@ -48,11 +48,28 @@ export const myPosts = async (token: string) => {
   })
 }
 
+export const updatePost = async (token: string, postId:string, description:string) : Promise<boolean> => {
+  let result: any;
+  await axios.put<any[]>(updatePostUrl, {
+    postId:postId,
+      description: description,
+    }, 
+    {
+      headers:{"Authorization" : `Bearer ${token}`}
+    })
+    .then(await function(response) {
+      result = response.data
+    })
+
+    return result;
+}
+
 const PostService = {
   GetAllPosts,
   addPost,
   getPostDetails,
   myPosts,
+  updatePost,
 }
 
 export default PostService 
