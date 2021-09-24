@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getAllAnswersUrl } from "../../constants/HttpCalls"
+import { getAllAnswersUrl, setCorrectAnswerUrl } from "../../constants/HttpCalls"
 
 export const getAnswers = async (postId: string, token: string) : Promise<any[]> => {
 
@@ -11,15 +11,32 @@ export const getAnswers = async (postId: string, token: string) : Promise<any[]>
         headers:{"Authorization" : `Bearer ${token}`}
       })
     .then(function (response) {
-        console.log(response.data);
         answers = response.data;
     })
 
     return answers;
 }
 
+export const setCorrectAnswer = async(answerId:string, token:string) : Promise<any> => {
+  console.log("I am here")
+  let result: any;
+   await axios.put<any[]>(setCorrectAnswerUrl, {
+    params: {
+      answerId: answerId,
+    }, 
+    headers:{"Authorization" : `Bearer ${token}`}
+  })
+  .then(await function (response) {
+    console.log(response.data)
+    result = response.data
+  })
+
+  return result;
+}
+
 const AnswerService = {
     getAnswers,
+    setCorrectAnswer,
 }
 
 export default AnswerService

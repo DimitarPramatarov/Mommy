@@ -17,7 +17,7 @@ const PostDetailScreen = (props : Props, {navigation} : RootStackScreenProps<'Po
         <PostDetail postId={postId}/>
         <Text>Answers</Text>
         <View>
-            <Answer postId={postId}/>
+            <Answer {...props.route.params}/>
         </View>
         </View>
     )

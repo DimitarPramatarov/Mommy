@@ -13,3 +13,4 @@ export const createPostUrl = "https://localhost:44306/Post/CreatePost";
 
 //Put requests
 export const updatePostUrl = "https://localhost:44306/Post/UpdatePost";
+export const setCorrectAnswerUrl = "https://localhost:44306/Answer/SetCorrectAnswer";

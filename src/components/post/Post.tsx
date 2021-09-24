@@ -17,7 +17,7 @@ import UserContext from '../../Context';
             return  posts.map(post => {
                 return (
                     <View  key={post.postId}>
-                        <TouchableOpacity  onPress={() => navigation.push('PostDetails', {postId: post.postId})}>
+                        <TouchableOpacity  onPress={() => navigation.push('PostDetails', {...post})}>
                         <PostCard {...post}/>
                         </TouchableOpacity>
                     </View>

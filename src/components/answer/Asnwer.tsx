@@ -5,17 +5,19 @@ import {getAnswers} from '../../services/answer/AnswerService';
 import UserContext from '../../Context';
 
 
-type PostId = {
+type Props = {
     postId: string;
+    username:string;
 }
 
-const Answer = (postId: PostId) => {
+const Answer = (props: Props) => {
     const context = useContext(UserContext);
     const [answers, setAnswers ] = useState<any[]>([]);
 
+    const currentUser = context.user;
+
     const getAnswersByPost = useCallback(async () => {
-        let answers = await  getAnswers(postId.postId, context.user.token)
-        console.log(answers);
+        let answers = await  getAnswers(props.postId, currentUser.token)
         setAnswers(answers);
     }, [])
 
@@ -23,7 +25,7 @@ const Answer = (postId: PostId) => {
         return  answers.map(answer => {
             return (
                 <View key={answer.answerId}>
-                    <AnswerCard {...answer}/>
+                    <AnswerCard {...answer} currentUser={currentUser.userName} userToken={currentUser.token} postOwner={props.username}/>
                 </View>
             )
         })
