@@ -6,8 +6,7 @@ interface IAuthButton {
   buttonName: string,
 }
 
-const AuthButton = (props: IAuthButton) => {
-
+const AuthButton =  (props: IAuthButton) => {
     return(
         <TouchableOpacity onPress={props.handleFunction} style={styles.Btn}>
         <Text style={styles.textColor}>{props.buttonName}</Text>

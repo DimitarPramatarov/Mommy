@@ -1,92 +1,123 @@
-import React, {useState, useContext } from 'react';
-import { StyleSheet, View, TextInput, Text, TouchableOpacity,
-   NativeSyntheticEvent, TextInputChangeEventData} from 'react-native';
+import React, {useState, useContext, useEffect} from 'react';
+import { StyleSheet, View, TextInput, Text, TouchableOpacity} from 'react-native';
 import {login, register} from '../services/auth/AuthService';
 import UserContext from '../Context';
 import AuthButton from '../components/buttons/AuthButton';
 import TextButton from '../components/buttons/TextButton';
 
+import {Controller, useForm} from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const authSchema = yup.object({
+  username: yup.string().required(),
+  password: yup.string().required(),
+  email: yup.string().notRequired()
+}).required();
+
 const AuthScreen = () =>  {
-
+  
     const context = useContext(UserContext);
-
     const [isRegister, setIsRegister] = useState<boolean>(false);
-    const [username, setUsername] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
-
-
-    const handleUsername = (event : NativeSyntheticEvent<TextInputChangeEventData>) : void => {
-        setUsername(event.nativeEvent.text);
-    }
-
-    const handlePassword = (event : NativeSyntheticEvent<TextInputChangeEventData>) : void => {
-        setPassword(event.nativeEvent.text);
-    }
-
-    const handleEmail = (event : NativeSyntheticEvent<TextInputChangeEventData>) : void => {
-      setEmail(event.nativeEvent.text);
-  }
-
-    const handleSubmit = async ()  => {
-
-      if(isRegister) {
-           let result =  register(username, email, password)
-           if(result != null)
-           {
-            await setIsRegister(false);
-           }
-
-        } else {
-
-           let user = await login(username, password)
-
-           if(user != null)
-           {
-            context.login(user);
-           }
-        }
-    }
-
-    
-
-    const handleIsRegsiter = () : void => {
+    const { control, handleSubmit, formState: { errors } } = useForm({
+      resolver: yupResolver(authSchema)
+    });
+   
+      const handleIsRegsiter = () : void => {
         setIsRegister(!isRegister);
     }
+    
+  const onSubmit = handleSubmit(async (data) : Promise<void> => {
+    console.log(data);
+    if(isRegister) {
+      let result =  register(data.username, data.email, data.password)
+      if(result != null)
+      {
+        await setIsRegister(false);
+      }
+      
+    } else {
+      
+      let user = await login(data.username, data.password)
+      
+      if(user != null)
+      {
+        context.login(user);
+      }
+    }
+
+  })
 
     if(isRegister == true) {
       return (
         <View style={styles.container}>
         <Text style={styles.logo}>Mommy</Text>
         <View style={styles.inputView} >
+        <Controller
+        control={control}
+        rules={{
+         required: true,
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
           <TextInput  
             style={styles.inputText}
             placeholder="Username..." 
-            value={username}
+            onBlur={onBlur}
+            value={value}
             placeholderTextColor="#003f5c"
-            onChange={handleUsername}/>
+            onChangeText={onChange}/>
+        )}
+        name="username"
+        defaultValue=""
+      />
+        {errors.username && <Text>Username is required!</Text>}
         </View>
         <View style={styles.inputView} >
+        <Controller
+        control={control}
+        rules={{
+         required: true,
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
           <TextInput  
-            style={styles.inputText}
-            placeholder="Email..." 
-            value={email}
-            placeholderTextColor="#003f5c"
-            onChange={handleEmail}/>
+          style={styles.inputText}
+          onBlur={onBlur}
+          placeholder="Email..." 
+          value={value}
+          placeholderTextColor="#003f5c"
+          onChangeText={onChange}/>
+        )}
+        name="email"
+        defaultValue=""
+      />
+        {errors.email && <Text>Email is required!</Text>}
         </View>
         <View style={styles.inputView} >
+        <Controller
+        control={control}
+        rules={{
+         required: true,
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
           <TextInput  
             secureTextEntry
             style={styles.inputText}
+            onBlur={onBlur}
             placeholder="Password..." 
-            value={password}
+            value={value}
             placeholderTextColor="#003f5c"
-            onChange={handlePassword}/>
+            onChangeText={onChange}/>
+        )}
+        name="password"
+        defaultValue=""
+      />
+        {errors.password && <Text>Password is required!</Text>}
+          
         </View>
         <TouchableOpacity>
           <Text style={styles.forgot}>Forgot Password?</Text>
         </TouchableOpacity>
-        <AuthButton buttonName={"REGISTER"} handleFunction={handleSubmit}/>
+        <AuthButton buttonName={"REGISTER"} handleFunction={onSubmit}/>
         <TextButton buttonName={"SignIn"} handleFunction={handleIsRegsiter}/>
       </View>
 
@@ -96,26 +127,50 @@ const AuthScreen = () =>  {
       <View style={styles.container}>
       <Text style={styles.logo}>Mommy</Text>
       <View style={styles.inputView} >
-        <TextInput  
-          style={styles.inputText}
-          placeholder="Username..." 
-          placeholderTextColor="#003f5c"
-          value={username}
-          onChange={handleUsername}/>
+      <Controller
+        control={control}
+        rules={{
+         required: true,
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput 
+            style={styles.inputText}
+            placeholder="Username..." 
+            onBlur={onBlur}
+            value={value}
+            placeholderTextColor="#003f5c"
+            onChangeText={onChange}/>
+        )}
+        name="username"
+        defaultValue=""
+      />
+        {errors.username && <Text>Username is required!</Text>}
       </View>
       <View style={styles.inputView} >
-        <TextInput  
-          secureTextEntry
-          style={styles.inputText}
-          placeholder="Password..." 
-          value={password}
-          placeholderTextColor="#003f5c"
-          onChange={handlePassword}/>
+      <Controller
+        control={control}
+        rules={{
+         required: true,
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput  
+            secureTextEntry
+            style={styles.inputText}
+            placeholder="Password..." 
+            onBlur={onBlur}
+            value={value}
+            placeholderTextColor="#003f5c"
+            onChangeText={onChange}/>
+        )}
+        name="password"
+        defaultValue=""
+      />
+        {errors.password && <Text>Password is required!</Text>}
       </View>
       <TouchableOpacity>
         <Text style={styles.forgot}>Forgot Password?</Text>
       </TouchableOpacity>
-      <AuthButton buttonName={"LOGIN"} handleFunction={handleSubmit}/>
+      <AuthButton buttonName={"LOGIN"} handleFunction={onSubmit}/>
       <TextButton buttonName={"SignUp"} handleFunction={handleIsRegsiter}/>
     </View>
   ) 
