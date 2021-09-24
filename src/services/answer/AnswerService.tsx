@@ -17,19 +17,22 @@ export const getAnswers = async (postId: string, token: string) : Promise<any[]>
     return answers;
 }
 
-export const setCorrectAnswer = async(answerId:string, token:string) : Promise<any> => {
-  console.log("I am here")
+export const setCorrectAnswer = async(answerId:string, token:string) : Promise<string> => {
   let result: any;
-   await axios.put<any[]>(setCorrectAnswerUrl, {
-    params: {
-      answerId: answerId,
-    }, 
-    headers:{"Authorization" : `Bearer ${token}`}
+   await axios.put(setCorrectAnswerUrl, {
+      answerId: answerId
+    },
+    {
+      headers:{"Authorization" : `Bearer ${token}`
+    }
   })
-  .then(await function (response) {
-    console.log(response.data)
-    result = response.data
-  })
+.then(function (response) {
+  console.log(response.data)
+  result = response.data;
+})
+.catch(function (error) {
+  console.log(error);
+})
 
   return result;
 }

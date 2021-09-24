@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import CorrectAnswer from '../answer/CorrextAnswer'
 
@@ -18,11 +18,17 @@ interface IProps {
 }
 
 const AnswerCard = (answer: IAnswer, props: IProps) => {
-    console.log(answer.isCorrectAnswer);
+
+    const [isAnswered, setIsCorrectAnswerd] = useState(answer.isCorrectAnswer)
+    
+    const handleAcceptedAnswer = () => {
+        setIsCorrectAnswerd(!isAnswered);
+    }
+    
     return(
         <View>
             <View style={
-            answer.isCorrectAnswer == true ? style.correctAnswer : null    
+            isAnswered == true ? style.correctAnswer : null    
         }>
             <Text>{answer.username}</Text>
             <Text>{answer.text}</Text>
@@ -30,7 +36,7 @@ const AnswerCard = (answer: IAnswer, props: IProps) => {
             </View>
             {props.postOwner == props.currentUser ? 
                 <View>
-                <CorrectAnswer token={answer.userToken} answerId={answer.answerId}/>
+                <CorrectAnswer token={answer.userToken} answerId={answer.answerId} handleAcceptedAnswer={handleAcceptedAnswer}/>
             </View>
             : null}
             
