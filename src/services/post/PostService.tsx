@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { getAllPostsUrl, createPostUrl, getPostDetailsUrl, updatePostUrl } from '../../constants/HttpCalls';
+import { 
+  getAllPostsUrl, createPostUrl,
+   getPostDetailsUrl, updatePostUrl,
+    myPostsUrl, deletePostUrl } from '../../constants/HttpCalls';
 
 export const  GetAllPosts = async (token: string) : Promise<any[]> => {
     
@@ -46,10 +49,18 @@ export const getPostDetails = async(postId: string, token: string) : Promise<any
   return post;
 }
 
-export const myPosts = async (token: string) => {
-  await axios.get("url", {
+export const getMyPosts = async (token: string): Promise<any[]> => {
+
+  let result: any;
+
+  await axios.get(myPostsUrl, {
     headers:{"Authorization" : `Bearer ${token}`}
   })
+  .then(await function (response) {
+    result = response.data;
+  })
+
+  return result;
 }
 
 export const updatePost = async (token: string, postId:string, description:string) : Promise<boolean> => {
@@ -68,12 +79,28 @@ export const updatePost = async (token: string, postId:string, description:strin
     return result;
 }
 
+export const deletePost = async (token:string, postId:string) : Promise<boolean> => {
+  let result: any;
+  await axios.post(deletePostUrl, {
+    id: postId,
+  },
+  {
+  headers:{"Authorization" : `Bearer ${token}`}
+  })
+  .then(await function(response) {
+    result = response.data
+  })
+
+  return result;
+}
+
 const PostService = {
   GetAllPosts,
   addPost,
   getPostDetails,
-  myPosts,
+  getMyPosts,
   updatePost,
+  deletePost,
 }
 
 export default PostService 
