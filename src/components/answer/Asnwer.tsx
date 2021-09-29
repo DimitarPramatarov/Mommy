@@ -1,8 +1,9 @@
 import React, {useCallback, useContext, useState,useEffect, useMemo} from 'react';
 import {View} from 'react-native';
 import AnswerCard from './AnswerCard'
-import {getAnswers} from '../../services/answer/AnswerService';
+import {getAnswers, deleteAnswerService} from '../../services/answer/AnswerService';
 import UserContext from '../../Context';
+import DeleteButton from '../buttons/DeleteButton';
 
 
 type Props = {
@@ -21,11 +22,16 @@ const Answer = (props: Props) => {
         setAnswers(answers);
     }, [])
 
+    const handleDelete = async (answerId: string) => {
+        let result = await deleteAnswerService(answerId, currentUser.token)
+    }
+
     const renderAnswers = useMemo(() => {
         return  answers.map(answer => {
             return (
                 <View key={answer.answerId}>
                     <AnswerCard {...answer} currentUser={currentUser.userName} userToken={currentUser.token} postOwner={props.username}/>
+                    {currentUser.userName == answer.username ? <DeleteButton handleDelete={handleDelete} id={answer.answerId}/> : null}
                 </View>
             )
         })

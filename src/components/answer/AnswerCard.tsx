@@ -2,41 +2,40 @@ import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import CorrectAnswer from '../answer/CorrextAnswer'
 
-interface IAnswer {
+interface IProps {
     answerId: string,
     username: string,
     userToken: string,
     text:string,
     createdOn: Date,
     isCorrectAnswer: boolean,
-}
-
-interface IProps {
     postOwner: string,
     token: string,
     currentUser: string,
 }
 
-const AnswerCard = (answer: IAnswer, props: IProps) => {
 
-    const [isAnswered, setIsCorrectAnswerd] = useState(answer.isCorrectAnswer)
+
+const AnswerCard = (props: IProps) => {
+
+    const [isAnswered, setIsCorrectAnswerd] = useState(props.isCorrectAnswer)
     
     const handleAcceptedAnswer = () => {
         setIsCorrectAnswerd(!isAnswered);
     }
     
     return(
-        <View>
+        <View >
             <View style={
             isAnswered == true ? style.correctAnswer : null    
         }>
-            <Text>{answer.username}</Text>
-            <Text>{answer.text}</Text>
-            <Text>{answer.createdOn}</Text>
+            <Text>{props.username}</Text>
+            <Text>{props.text}</Text>
+            <Text>{props.createdOn}</Text>
             </View>
             {props.postOwner == props.currentUser ? 
                 <View>
-                <CorrectAnswer token={answer.userToken} answerId={answer.answerId} handleAcceptedAnswer={handleAcceptedAnswer}/>
+                <CorrectAnswer token={props.userToken} answerId={props.answerId} handleAcceptedAnswer={handleAcceptedAnswer}/>
             </View>
             : null}
             
@@ -45,6 +44,14 @@ const AnswerCard = (answer: IAnswer, props: IProps) => {
 }
 
 const style = StyleSheet.create({
+    container: {
+        position: "relative",
+        width: 295,
+        height: 141,
+        left: 40,
+      top: 550,
+
+    },
     correctAnswer: {
         backgroundColor: "#00ff00"
     }

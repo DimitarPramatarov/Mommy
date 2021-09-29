@@ -1,8 +1,9 @@
 import React from 'react';
-import {View,Text} from 'react-native'
-import PostDetail from '../components/post/PostDetail'
+import {View,Text} from 'react-native';
+import PostDetail from '../components/post/PostDetail';
 import { RootStackScreenProps } from '../../types';
-import Answer from '../components/answer/Asnwer'
+import Answer from '../components/answer/Asnwer';
+import CreateAnswer from '../components/answer/CreateAnswer';
 
 type Props = {
    route: any
@@ -19,6 +20,7 @@ const PostDetailScreen = (props : Props, {navigation} : RootStackScreenProps<'Po
         <View>
             <Answer {...props.route.params}/>
         </View>
+            <CreateAnswer postId={postId} />
         </View>
     )
     
