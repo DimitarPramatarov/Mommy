@@ -18,6 +18,7 @@ const PostDetailCard = (post: Post) => {
     const [isEdit, setEdit] = useState<boolean>(false)
     const [editedDescription, editDescription] = useState("");
     const [currentPost, changePost] = useState(post);
+    
     useEffect(() => {
         changePost(post);
     }, [post]);

@@ -4,7 +4,12 @@ import PostCard from './PostCard';
 import { GetAllPosts } from '../../services/post/PostService';
 import UserContext from '../../Context';
 
- const Post = (navigation: any) => {
+interface IProps {
+    navigation: any,
+    dataFromSearch: any[],
+}
+
+ const Post = (props: IProps) => {
     const context = useContext(UserContext);
     const [posts, setPosts] = useState<any[]>([]);
 
@@ -12,13 +17,17 @@ import UserContext from '../../Context';
         let newPosts = await GetAllPosts(context.user.token)
         setPosts(newPosts);
     }, [])
+
+    function handleNavigation (destination: string, data: any) {
+        props.navigation.push(destination, data);
+    }
    
     const renderPost = useMemo(() => {
             return  posts.map(post => {
                 return (
                     <View  key={post.postId}>
-                        <TouchableOpacity  onPress={() => navigation.push('PostDetails', {...post})}>
-                        <PostCard {...post}/>
+                        <TouchableOpacity  onPress={() => props.navigation.push('PostDetails', {...post})}>
+                        <PostCard {...post} handleNavigation={handleNavigation}/>
                         </TouchableOpacity>
                     </View>
                 )
@@ -27,8 +36,12 @@ import UserContext from '../../Context';
     }, [posts])
 
     useEffect(() => {
-        getPosts();
-    }, [getPosts.length])
+        if(props.dataFromSearch.length != 0){
+            setPosts(props.dataFromSearch)
+        } else {
+            getPosts()
+        }
+    }, [posts, props.dataFromSearch])
     
     return(
         <View> 

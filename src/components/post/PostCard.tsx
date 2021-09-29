@@ -1,19 +1,20 @@
 import React from 'react';
-import {View, Text, StyleSheet,} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-export interface Post {
+export interface IProps {
     postId: string
     title: string,
     createdOn: Date,
     username: string,
     isAnswered: boolean,
+    handleNavigation: Function,
 }
 
 
-const PostCard = (post: Post)=> {
-
-return(
-    <View style={styles.post}>
+const PostCard = ( props: IProps) => {
+   
+    return(
+        <View style={styles.post}>
         <View style={styles.postTop}>
             <View style={styles.meta}>
         <View>
@@ -24,22 +25,24 @@ return(
             </View>
             <View>
             <View>
-            <Text>{post.username}</Text>
+                <TouchableOpacity onPress={() => props.handleNavigation("ProfileScreen", props.username)}>
+                    <Text>{props.username}</Text>
+                </TouchableOpacity>
             </View>
             </View>
         </View>
         <View> 
             <View>
-            <Text>{post.createdOn}</Text>
+            <Text>{props.createdOn}</Text>
             </View>
         </View>
             </View>
         </View>
         <View>
             <View style={styles.paddingNav}>
-                <Text  style={styles.title}>{post.title}</Text> 
+                <Text  style={styles.title}>{props.title}</Text> 
         <View>
-            <Text>{post.isAnswered}</Text>
+            <Text>{props.isAnswered}</Text>
         </View>
     </View>
     <View>
