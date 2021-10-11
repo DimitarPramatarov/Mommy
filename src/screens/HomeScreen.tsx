@@ -4,41 +4,27 @@ import {ScrollView, View, Text, TouchableOpacity} from 'react-native'
 import { RootStackScreenProps } from '../../types';
 import Logout from '../components/auth/Logout';
 import SearchBar from '../components/search/SearchBar';
+import { DrawerActions } from '@react-navigation/routers';
 
-const HomeScreen = ({navigation} : RootStackScreenProps<"HomeScreen">) => {
+
+
+const HomeScreen = ({navigation} : RootStackScreenProps<"Home">) => {
 
     const [searchResult, setSearchResult] = useState<any[]>([]);
 
-    const handleSearchResult = async (searchData: any[]) => {
+     const handleSearchResult = async (searchData: any[]) => {
         await setSearchResult(searchData)
     }
+    
 
     useEffect(() => {
         handleSearchResult
         
     }, [searchResult])
-
-
-    const createPost = () => {
-        navigation.navigate("CreatePost");
-    }
-
-    const myProfile = () => {
-        navigation.navigate("MyProfile");
-    }
-
+   
     return(
         <ScrollView>
             <SearchBar handleSearchResult={handleSearchResult}/>
-            <TouchableOpacity onPress={createPost}>
-                <Text>CreatePost</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={myProfile}>
-                <Text>MyProfile</Text>
-                </TouchableOpacity>
-                <View>
-                    <Logout />
-                </View>
         <View>
             <Post dataFromSearch={searchResult} navigation={navigation}/>
         </View>
