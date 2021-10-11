@@ -4,7 +4,7 @@ import { RootStackScreenProps } from '../../../types';
 import UserContext from '../../Context';
 import {addPost} from '../../services/post/PostService';
 
-const CreatePost = ({navigation} : RootStackScreenProps<"CreatePost">) => {
+const CreatePost = (navigation: any) => {
     const context = useContext(UserContext);
 
     const [title, setTitle] = useState('');
@@ -69,15 +69,15 @@ const style = StyleSheet.create({
         position: "absolute",
         width: 375,
         height: 101,
+        top: 0,
         left: 0,
-      top: 0,
 
     },
     newArticle: {
         width:133,
         height: 33,
         top: 68,
-        Left: 40,
+        left: 40,
     },
     download: {
         position: "absolute",

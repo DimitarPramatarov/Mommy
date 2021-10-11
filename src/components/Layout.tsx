@@ -1,11 +1,15 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 
-const Layout = () => {
+const Layout = (navigaiton: any) => {
     
+
+
     return(
         <View>
-            <Text>LAYOUT!</Text>
+            <TouchableOpacity >
+            <Text>Menu</Text>
+            </TouchableOpacity>
         </View>
     )
 }

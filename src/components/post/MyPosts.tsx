@@ -28,7 +28,7 @@ const MyPosts = (navigation: any) => {
         return posts.map(post => {
             return (
                 <View key={post.postId}>
-                    <TouchableOpacity  onPress={() => navigation.push('PostDetails', {...post})}>
+                    <TouchableOpacity  onPress={() => navigation.push('MyPostDetails', {...post})}>
                     <PostCard {...post} handleNavigation={handleNavigation}/>
                     </TouchableOpacity>
                     <DeleteButton handleDelete={handleDeleteMyPost} id={post.postId}/>
