@@ -6,7 +6,7 @@ import { RootStackScreenProps } from '../../types';
 
 
 
-const MyProfileScreen = ({navigation} : RootStackScreenProps<'MyProfile'>) => {
+const MyProfileScreen = ({navigation} : RootStackScreenProps<"MyProfile">) => {
 
     return(
         <View >
