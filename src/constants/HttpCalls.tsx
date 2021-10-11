@@ -4,7 +4,11 @@ export const getAllPostsUrl = "https://localhost:44306/Post/GetAllPosts";
 export const getPostDetailsUrl = "https://localhost:44306/Post/Details";
 export const getAllAnswersUrl = "https://localhost:44306/Answer/GetAnswers";
 export const myProfileUrl = "https://localhost:44306/Profile/MyProfile";
-export const getProfileByUsername = "https://localhost:44306/Profile/ProfileDetails"
+export const getProfileByUsername = "https://localhost:44306/Profile/ProfileDetails";
+export const getUserPostUrl = "https://localhost:44306/Post/GetUserPosts";
+export const getTotalVotesUrl = "https://localhost:44306/Vote/GetTotalVotes";
+export const plusVoteUrl = "https://localhost:44306/Vote/PlusVote";
+export const minusVoteUrl = "https://localhost:44306/Vote/MinusVote";
 
 
 
