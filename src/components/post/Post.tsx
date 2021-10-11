@@ -36,12 +36,8 @@ interface IProps {
     }, [posts])
 
     useEffect(() => {
-        if(props.dataFromSearch.length != 0){
-            setPosts(props.dataFromSearch)
-        } else {
             getPosts()
-        }
-    }, [posts, props.dataFromSearch])
+    }, [getPosts])
     
     return(
         <View> 

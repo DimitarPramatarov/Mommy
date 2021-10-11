@@ -15,19 +15,31 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       Root: {
         screens: {
-          HomeScreen: {
+            Auth: {
             screens: {
-              HomeScreen: 'HomeScreen',
+              Auth: 'Auth',
             },
           },
-          PostDetails: {
+
+          Home: {
             screens: {
-              TabTwoScreen: 'DetailScreen',
+              HomeScreen: 'HomeScreen',
+              PostDetails: "PostDetails",
+              ProfileScreen: 'ProfileScreen'
             },
           },
         },
       },
-      Modal: 'modal',
+      DrawerRoot:{
+        screens: {
+          MyProfile: {
+            screens: {
+              MyProfileScreen: 'MyProfileScreen',
+              MyPostDetails: "MyPostDetails",
+            },
+          },
+        }
+      },
       NotFound: '*',
     },
   },
