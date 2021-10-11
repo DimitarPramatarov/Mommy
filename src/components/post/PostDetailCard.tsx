@@ -2,6 +2,8 @@ import React, {useState, useContext, useEffect} from 'react';
 import {View, Text, TextInput, NativeSyntheticEvent, TextInputChangeEventData, TouchableOpacity} from 'react-native';
 import {updatePost} from '../../services/post/PostService';
 import UserContext from '../../Context';
+import Vote from '../votes/Vote';
+
 
 interface Post {
     postId: string
@@ -77,6 +79,11 @@ const PostDetailCard = (post: Post) => {
              <TouchableOpacity onPress={handleIsEdit}>
             <Text>Edit</Text> 
             </TouchableOpacity> : null}
+            </View>
+            <View>
+            <View>
+            <Vote id={post.postId}/>
+            </View>
             </View>
             </View>
         </View>

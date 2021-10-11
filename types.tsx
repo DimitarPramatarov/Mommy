@@ -15,15 +15,20 @@ declare global {
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  Modal: undefined;
+  DrawerRoot: NavigatorScreenParams<RootTabParamList> | undefined;
   NotFound: undefined;
   Auth: undefined;
   ModalWork:undefined;
-  HomeScreen: undefined;
-  MyProfile: undefined;
+  Home: NavigatorScreenParams<RootTabParamList>| undefined;
+  MyProfile: NavigatorScreenParams<RootTabParamList>| undefined;
+  Profile: undefined;
   CreatePost: undefined;
-  PostDetails: undefined;
-  ProfileScreen: undefined;
+  PostDetails: NavigatorScreenParams<RootTabParamList>| undefined;
+  MyPostDetails: NavigatorScreenParams<RootTabParamList>| undefined;
+  MyProfileScreen: undefined;
+  ProfileScreen: NavigatorScreenParams<RootTabParamList>| undefined;
+  LeftNavigator: undefined
+  Logout: undefined
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -34,8 +39,13 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
 export type RootTabParamList = {
   Auth: undefined
   ModalWork:undefined;
-  HomeScreen: undefined;
+  Home: undefined;
   PostDetails: undefined;
+  MyProfileScreen: undefined;
+  MyPostDetails: undefined
+  CreatePost: undefined;
+  ProfileScreen: undefined;
+  MyProfile: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
