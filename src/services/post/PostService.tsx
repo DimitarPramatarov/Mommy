@@ -2,7 +2,7 @@ import axios from 'axios';
 import { 
   getAllPostsUrl, createPostUrl,
    getPostDetailsUrl, updatePostUrl,
-    myPostsUrl, deletePostUrl } from '../../constants/HttpCalls';
+    myPostsUrl, deletePostUrl, getUserPostUrl } from '../../constants/HttpCalls';
 
 export const  GetAllPosts = async (token: string) : Promise<any[]> => {
     
@@ -58,6 +58,19 @@ export const getMyPosts = async (token: string): Promise<any[]> => {
   })
   .then(await function (response) {
     result = response.data;
+  })
+
+  return result;
+}
+
+export const getUserPosts = async (token: string, username: string) => {
+
+  let result = await axios.get(getUserPostUrl, {
+    params: {
+      token: token,
+      username: username,
+    },
+    headers:{"Authorization": `Bearer ${token}`}
   })
 
   return result;
