@@ -28,7 +28,6 @@ const AuthScreen = () =>  {
     }
     
   const onSubmit = handleSubmit(async (data) : Promise<void> => {
-    console.log(data);
     if(isRegister) {
       let result =  register(data.username, data.email, data.password)
       if(result != null)
