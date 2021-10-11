@@ -9,7 +9,7 @@ type Props = {
    route: any
 }
 
-const PostDetailScreen = (props : Props, {navigation} : RootStackScreenProps<'PostDetails'>) => {
+const PostDetailScreen = (props : Props, {navigation} : RootStackScreenProps<"PostDetails">) => {
 
     const postId: string = props.route.params.postId;    
     return(
