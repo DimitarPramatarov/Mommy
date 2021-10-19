@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import CorrectAnswer from '../answer/CorrextAnswer'
+import CorrectAnswer from '../answer/CorrextAnswer';
+import CreateSubAnswer from '../subAnswer/CreateSubAnswer';
+import SubAnswer from '../subAnswer/SubAnswer';
 
 interface IProps {
     answerId: string,
@@ -38,6 +40,12 @@ const AnswerCard = (props: IProps) => {
                 <CorrectAnswer token={props.userToken} answerId={props.answerId} handleAcceptedAnswer={handleAcceptedAnswer}/>
             </View>
             : null}
+            <View>
+                <CreateSubAnswer answerId={props.answerId}/>
+            </View>
+            <View>
+            <SubAnswer answerId={props.answerId}/>
+            </View>
             
         </View>
     )

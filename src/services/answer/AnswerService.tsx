@@ -14,20 +14,16 @@ export const createAnswerService = async (postId: string, description: string, t
   return result;
 }
 
-export const getAnswers = async (postId: string, token: string) : Promise<any[]> => {
+export const getAnswers = async (postId: string, token: string) => {
 
-    let answers: any;
-    await axios.get<any[]>(getAllAnswersUrl, {
+    let answers = await axios.get(getAllAnswersUrl, {
         params: {
           postId: postId
         },
         headers:{"Authorization" : `Bearer ${token}`}
       })
-    .then(function (response) {
-        answers = response.data;
-    })
 
-    return answers;
+    return answers.data;
 }
 
 export const setCorrectAnswer = async(answerId:string, token:string) : Promise<string> => {
@@ -62,6 +58,20 @@ export const deleteAnswerService = async (answerId:string, token: string) => {
 
   return result;
 }
+
+export const updateAnswerService = async (AnswerId: string, description: string, token: string) => {
+
+  let result = await axios.put("url", {
+      id: AnswerId,
+      description: description,
+  },
+  {
+      headers: {"Authorization" : `Bearer ${token}`}
+  })
+  
+  return result.data
+}
+
 
 const AnswerService = {
     getAnswers,
