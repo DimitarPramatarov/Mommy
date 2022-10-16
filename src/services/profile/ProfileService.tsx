@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {myProfileUrl} from '../../constants/HttpCalls';
+import {getProfileByUsername, myProfileUrl} from '../../constants/HttpCalls';
 
 interface IProfile {
     userName: string,
@@ -30,7 +30,7 @@ export const getMyProfileService = async (token: string) : Promise<IProfile> => 
 
 export const getUserProfileService = async (token: string, username: string) : Promise<IProfile> => {
     
-    const result = await axios.get('https://localhost:44306/Profile/ProfileDetails', {
+    const result = await axios.get(getProfileByUsername, {
         params: {
           username: username
         },
@@ -46,6 +46,8 @@ export const getUserProfileService = async (token: string, username: string) : P
         posts: result.data.posts,
     };
 
+
+    console.log(userProfile);
     return userProfile
 }
 

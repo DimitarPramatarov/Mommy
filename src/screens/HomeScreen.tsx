@@ -21,10 +21,8 @@ const HomeScreen = ({navigation} : RootStackScreenProps<"Home">) => {
         handleSearchResult
         
     }, [searchResult])
-   
     return(
         <ScrollView>
-            <SearchBar handleSearchResult={handleSearchResult}/>
         <View>
             <Post dataFromSearch={searchResult} navigation={navigation}/>
         </View>

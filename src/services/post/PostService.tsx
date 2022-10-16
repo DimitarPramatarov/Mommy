@@ -11,7 +11,7 @@ export const  GetAllPosts = async (token: string) : Promise<any[]> => {
     headers:{"Authorization" : `Bearer ${token}`}
   })
   .then(await function (response) {
-      posts = response.data
+    posts = response.data
   })
   return posts;
   
@@ -63,14 +63,20 @@ export const getMyPosts = async (token: string): Promise<any[]> => {
   return result;
 }
 
-export const getUserPosts = async (token: string, username: string) => {
+export const getUserPosts = async (token: string, username: string): Promise<any[]> => {
+  
+  let result: any;
 
-  let result = await axios.get(getUserPostUrl, {
+  await axios.get(getUserPostUrl, {
+    
     params: {
       token: token,
       username: username,
     },
     headers:{"Authorization": `Bearer ${token}`}
+  })
+  .then(await function (response){
+    result = response.data;
   })
 
   return result;

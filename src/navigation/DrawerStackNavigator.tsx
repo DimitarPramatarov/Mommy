@@ -9,6 +9,8 @@ import Logout from '../components/auth/Logout';
 import UserContext from '../Context';
 import CreatePostScreen from '../screens/CreatePostScreen';
 import MyProfileScreenStack from './MyProfileScreenStack';
+import HomeScreen from '../screens/HomeScreen';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const Drawer = createDrawerNavigator<RootStackParamList>();
 
@@ -32,7 +34,7 @@ const DrawerNavigator = (navigation: any) =>{
         
         }}
         >
-          <Drawer.Screen name="Home" component={MainStackNavigator} />
+          <Drawer.Screen name="OverView" component={MainStackNavigator} />
           <Drawer.Screen name='Profile' component={MyProfileScreenStack}/>
           <Drawer.Screen name="CreatePost" component={CreatePostScreen}/>
           <Drawer.Screen name="Logout" component={Logout}/>

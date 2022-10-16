@@ -21,7 +21,7 @@ interface IProps {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const MainStackNavigator = (props: IProps) => {
+const MainStackNavigator = () => {
     return(
         <Stack.Navigator initialRouteName="Root" screenOptions={{headerShown: false,
             headerTitle: props => <LogoTitle {...props}/>

@@ -13,7 +13,6 @@ type Props = {
 const ProfileScreen = (props: Props, {navigation} : RootStackScreenProps<'ProfileScreen'>) => {
 
     const username: string = props.route.params;    
-    let fakeArray: any[] = new  Array;
     return(
         <View>
             <View>

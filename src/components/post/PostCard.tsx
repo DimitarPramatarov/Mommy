@@ -14,12 +14,12 @@ export interface IProps {
 const PostCard = ( props: IProps) => {
    
     return(
-        <View style={styles.post}>
-        <View style={styles.postTop}>
-            <View style={styles.meta}>
+        <View >
         <View>
-            <View style={styles.authorPic}>
-                <View style={styles.avatar}>
+            <View >
+        <View>
+            <View >
+                <View >
                 <Text>PIC</Text>
                 </View>
             </View>
@@ -33,14 +33,13 @@ const PostCard = ( props: IProps) => {
         </View>
         <View> 
             <View>
-            <Text>{props.createdOn}</Text>
             </View>
         </View>
             </View>
         </View>
         <View>
-            <View style={styles.paddingNav}>
-                <Text  style={styles.title}>{props.title}</Text> 
+            <View >
+                <Text >{props.title}</Text> 
         <View>
             <Text>{props.isAnswered}</Text>
         </View>
@@ -51,7 +50,6 @@ const PostCard = ( props: IProps) => {
         </View>
 );
 }
-
 const styles = StyleSheet.create({
     post: {
         backgroundColor: '#fff',
@@ -98,6 +96,7 @@ const styles = StyleSheet.create({
         height: '2rem',
     }
 })
+
 
 export default PostCard
 

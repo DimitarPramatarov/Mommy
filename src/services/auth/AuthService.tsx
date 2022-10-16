@@ -4,9 +4,17 @@ import { loginUrl, registerUrl } from '../../constants/HttpCalls';
   export const login = async (username :string, password: string) : Promise<string>=> {
 
     let token = "";
-      await axios.post<any>(loginUrl,   {
-        username: username,
-        password: password,
+    console.log(username);
+    console.log(password);
+      await axios.post<any>(loginUrl,  
+        {
+          headers:{
+            "Accept" : "*/*",
+            "Conent-Type" : "application/json",
+            "Connection" : "keep-alive"
+          },
+          username: username,
+          password: password,
     })
   .then(await function (response)  {
     // handle success

@@ -20,6 +20,7 @@ export type RootStackParamList = {
   Auth: undefined;
   ModalWork:undefined;
   Home: NavigatorScreenParams<RootTabParamList>| undefined;
+  OverView: NavigatorScreenParams<RootTabParamList>| undefined;
   MyProfile: NavigatorScreenParams<RootTabParamList>| undefined;
   Profile: undefined;
   CreatePost: undefined;
