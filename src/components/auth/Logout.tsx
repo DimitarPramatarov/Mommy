@@ -1,21 +1,23 @@
-import React, {useContext} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import UserContext from '../../Context';
-
-
+import AuthScreen from '../../screens/AuthScreen';
 
 const Logout = () => {
-    
+
     const context = useContext(UserContext)
 
     const handleLogout = () => {
-        
-         context.logOut();
+        context.logOut();
     }
 
-    return(
+    useEffect(() => {
+        handleLogout()
+    })
+
+    return (
         <View>
-        {handleLogout}
+            <AuthScreen />
         </View>
     )
 }
